@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated `TokensController`, `TokenListController`, and `AccountTrackerController` to use per-chain state variants. ([#5310](https://github.com/MetaMask/core/pull/5310))
+
+### Removed
+
+- **BREAKING:** Remove deprecated state fields scoped to the current chain ([#5310](https://github.com/MetaMask/core/pull/5310))
+  - This change removes the following state fields:
+    - `TokensController:state`
+      - `detectedTokens` (replaced by `detectedTokensByChainId`)
+      - `ignoredTokens` (replaced by `ignoredTokensByChainId`)
+      - `tokens` (replaced by `tokensByChainId`)
+    - `TokenListController:state`
+      - `tokenList` (replaced by `tokensChainsCache`)
+    - `AccountTrackerController:state`
+      - `accounts` (replaced by `accountsByChainId`)
+
+## [55.0.1]
+
+### Added
+
+- Add an optional chainId argument to `addNftContract` function in NftController ([#5508](https://github.com/MetaMask/core/pull/5508))
+
 ## [55.0.0]
 
 ### Changed
@@ -1486,7 +1509,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Use Ethers for AssetsContractController ([#845](https://github.com/MetaMask/core/pull/845))
 
-[Unreleased]: https://github.com/MetaMask/core/compare/@metamask/assets-controllers@55.0.0...HEAD
+[Unreleased]: https://github.com/MetaMask/core/compare/@metamask/assets-controllers@55.0.1...HEAD
+[55.0.1]: https://github.com/MetaMask/core/compare/@metamask/assets-controllers@55.0.0...@metamask/assets-controllers@55.0.1
 [55.0.0]: https://github.com/MetaMask/core/compare/@metamask/assets-controllers@54.0.0...@metamask/assets-controllers@55.0.0
 [54.0.0]: https://github.com/MetaMask/core/compare/@metamask/assets-controllers@53.1.1...@metamask/assets-controllers@54.0.0
 [53.1.1]: https://github.com/MetaMask/core/compare/@metamask/assets-controllers@53.1.0...@metamask/assets-controllers@53.1.1
