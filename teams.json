@@ -1,5 +1,6 @@
 {
   "metamask/accounts-controller": "team-accounts",
+  "metamask/account-tree-controller": "team-accounts",
   "metamask/address-book-controller": "team-confirmations",
   "metamask/announcement-controller": "team-wallet-ux",
   "metamask/app-metadata-controller": "team-mobile-platform",
@@ -47,5 +48,6 @@
   "metamask/token-search-discovery-controller": "team-portfolio",
   "metamask/earn-controller": "team-earn",
   "metamask/error-reporting-service": "team-wallet-framework",
+  "metamask/foundryup": "team-mobile-platform,team-extension-platform",
   "metamask/seedless-onboarding-controller": "team-web3auth"
 }

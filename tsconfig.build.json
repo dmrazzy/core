@@ -1,5 +1,6 @@
 {
   "references": [
+    { "path": "./packages/account-tree-controller/tsconfig.build.json" },
     { "path": "./packages/accounts-controller/tsconfig.build.json" },
     { "path": "./packages/address-book-controller/tsconfig.build.json" },
     { "path": "./packages/announcement-controller/tsconfig.build.json" },
@@ -19,6 +20,7 @@
     { "path": "./packages/ens-controller/tsconfig.build.json" },
     { "path": "./packages/error-reporting-service/tsconfig.build.json" },
     { "path": "./packages/eth-json-rpc-provider/tsconfig.build.json" },
+    { "path": "./packages/foundryup/tsconfig.build.json" },
     { "path": "./packages/gas-fee-controller/tsconfig.build.json" },
     { "path": "./packages/json-rpc-engine/tsconfig.build.json" },
     { "path": "./packages/json-rpc-middleware-stream/tsconfig.build.json" },

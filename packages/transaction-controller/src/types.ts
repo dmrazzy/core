@@ -500,14 +500,19 @@ export type TransactionBatchMeta = {
   chainId: Hex;
 
   /**
+   * Address to send this transaction from.
+   */
+  from: string;
+
+  /**
+   * Maximum number of units of gas to use for this transaction batch.
+   */
+  gas?: string;
+
+  /**
    * ID of the associated transaction batch.
    */
   id: string;
-
-  /**
-   * Data for any EIP-7702 transactions.
-   */
-  transactions?: NestedTransactionMetadata[];
 
   /**
    * The ID of the network client used by the transaction.
@@ -518,6 +523,11 @@ export type TransactionBatchMeta = {
    * Origin this transaction was sent from.
    */
   origin?: string;
+
+  /**
+   * Data for any EIP-7702 transactions.
+   */
+  transactions?: NestedTransactionMetadata[];
 };
 
 export type SendFlowHistoryEntry = {
@@ -667,6 +677,11 @@ export enum TransactionType {
    * A transaction that deposits tokens into a lending contract.
    */
   lendingDeposit = 'lendingDeposit',
+
+  /**
+   * A transaction that withdraws tokens from a lending contract.
+   */
+  lendingWithdraw = 'lendingWithdraw',
 
   /**
    * A transaction for personal sign.
@@ -1599,9 +1614,21 @@ export type TransactionBatchRequest = {
   /** Transactions to be submitted as part of the batch. */
   transactions: TransactionBatchSingleRequest[];
 
+  /** Whether to disable batch transaction processing via an EIP-7702 upgraded account. */
+  disable7702?: boolean;
+
+  /** Whether to disable batch transaction via the `publishBatch` hook. */
+  disableHook?: boolean;
+
+  /** Whether to disable batch transaction via sequential transactions. */
+  disableSequential?: boolean;
+
   /**
    * Whether to use the publish batch hook to submit the batch.
    * Defaults to false.
+   *
+   * @deprecated This is no longer used and will be removed in a future version.
+   * Use `disableHook`, `disable7702` and `disableSequential`.
    */
   useHook?: boolean;
 
