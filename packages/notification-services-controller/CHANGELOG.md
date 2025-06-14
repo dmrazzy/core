@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Bump `@metamask/controller-utils` to `^11.10.0` ([#5935](https://github.com/MetaMask/core/pull/5935))
+
+## [10.0.0]
+
+### Changed
+
+- **BREAKING:** bump `@metamask/profile-sync-controller` peer dependency to `^17.0.0` ([#5906](https://github.com/MetaMask/core/pull/5906))
+
 ## [9.0.0]
 
 ### Changed
@@ -427,7 +437,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[Unreleased]: https://github.com/MetaMask/core/compare/@metamask/notification-services-controller@9.0.0...HEAD
+[Unreleased]: https://github.com/MetaMask/core/compare/@metamask/notification-services-controller@10.0.0...HEAD
+[10.0.0]: https://github.com/MetaMask/core/compare/@metamask/notification-services-controller@9.0.0...@metamask/notification-services-controller@10.0.0
 [9.0.0]: https://github.com/MetaMask/core/compare/@metamask/notification-services-controller@8.0.0...@metamask/notification-services-controller@9.0.0
 [8.0.0]: https://github.com/MetaMask/core/compare/@metamask/notification-services-controller@7.0.0...@metamask/notification-services-controller@8.0.0
 [7.0.0]: https://github.com/MetaMask/core/compare/@metamask/notification-services-controller@6.0.1...@metamask/notification-services-controller@7.0.0
