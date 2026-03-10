@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Support gasless Relay deposits via `execute` endpoint ([#8133](https://github.com/MetaMask/core/pull/8133))
+
 ## [16.4.1]
 
 ### Changed
