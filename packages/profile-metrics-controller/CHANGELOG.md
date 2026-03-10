@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Move bearer token acquisition inside the retry loop in `ProfileMetricsService.submitMetrics` so each retry attempt fetches a fresh token instead of reusing a potentially stale one ([#8144](https://github.com/MetaMask/core/pull/8144))
+
 ## [3.0.2]
 
 ### Changed
