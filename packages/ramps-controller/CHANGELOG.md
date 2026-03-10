@@ -7,11 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **BREAKING:** Update state hydration to make `init()` idempotent and remove `hydrateState()` ([#8157](https://github.com/MetaMask/core/pull/8157))
+
+### Removed
+
+- Remove `hydrateState()` — use `init()` as the single entry point for controller hydration
+
 ## [11.0.0]
 
 ### Changed
 
-- **BREAKING:** Replace `getWidgetUrl` with `getBuyWidgetData` (returns `BuyWidget | null`); add `addPrecreatedOrder` for custom-action ramp flows (e.g., PayPal) ([#8100](https://github.com/MetaMask/core/pull/8100))
+- **BREAKING:** Replace `getWidgetUrl` with `getBuyWidgetData` (returns `BuyWidget | null`); add `addPrecreatedOrder` for custom-action ramp flows (e.g., PayPal, Robinhood, Coinbase) ([#8100](https://github.com/MetaMask/core/pull/8100))
 
 ## [10.2.0]
 
