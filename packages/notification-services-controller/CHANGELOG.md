@@ -32,6 +32,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - All existing types for messenger actions have been renamed so they end in `Action` (e.g. `NotificationServicesControllerUpdateMetamaskNotificationsList` -> `NotificationServicesControllerUpdateMetamaskNotificationsListAction`). You will need to update imports appropriately.
   - The `NotificationServicesPushController` action `NotificationServicesPushControllerSubscribeToNotificationsAction` has been renamed to `NotificationServicesPushControllerSubscribeToPushNotificationsAction` so it matches the method name.
   - These changes only affect the types. The action type strings themselves have not changed, so you do not need to update the list of actions you pass when initializing `NotificationServicesController` and `NotificationServicesPushController` messengers.
+- Register notification accounts from all keyrings instead of only the first HD keyring, so notification setup now includes addresses from HD, hardware, imported, and snap keyrings ([#8108](https://github.com/MetaMask/core/pull/8108))
+- Add push token unlink support for account removal by deleting `/api/v2/token` links for `{ address, platform }` pairs when notification accounts are disabled (for example during SRP removal) ([#8108](https://github.com/MetaMask/core/pull/8108))
 
 ## [22.1.0]
 
