@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Optimize `{Sol,Btc,Trx}AccountProvider.createAccounts` for range operations ([#8131](https://github.com/MetaMask/core/pull/8131))
+  - Each Snaps have to implement the new `keyring_createAccounts` method accordingly and enable the batch option using the provider's configuration object.
+  - Batch account creation with the new `SnapKeyring.createAccounts` method.
+  - Significantly reduces lock acquisitions and API calls for batch operations.
 - Optimize `EvmAccountProvider.createAccounts` for range operations ([#7801](https://github.com/MetaMask/core/pull/7801))
   - Batch account creation with single a `withKeyring` call for entire range instead of one call per account.
   - Batch account creation with single `keyring.addAccounts` call.
