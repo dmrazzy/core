@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- New public `getGasFeeTokens()` controller method ([#8183](https://github.com/MetaMask/core/pull/8183))
+- Expose missing public `TransactionController` methods through its messenger ([#8183](https://github.com/MetaMask/core/pull/8183))
+  - The following actions are now available:
+    - `TransactionController:handleMethodData`
+    - `TransactionController:isAtomicBatchSupported`
+    - `TransactionController:startIncomingTransactionPolling`
+    - `TransactionController:stopIncomingTransactionPolling`
+    - `TransactionController:updateIncomingTransactions`
+    - `TransactionController:stopTransaction`
+    - `TransactionController:speedUpTransaction`
+    - `TransactionController:estimateGasBuffered`
+    - `TransactionController:updateEditableParams`
+    - `TransactionController:setTransactionActive`
+    - `TransactionController:approveTransactionsWithSameNonce`
+    - `TransactionController:estimateGasFee`
+    - `TransactionController:getLayer1GasFee`
+    - `TransactionController:clearUnapprovedTransactions`
+    - `TransactionController:abortTransactionSigning`
+    - `TransactionController:updateAtomicBatchData`
+  - Corresponding action types (e.g. `TransactionControllerHandleMethodDataAction`) are available as well.
+
+### Changed
+
+- **BREAKING:** Standardize names of `TransactionController` messenger action types ([#8183](https://github.com/MetaMask/core/pull/8183))
+  - All existing types for messenger actions have been renamed so they end in `Action` (e.g. `TransactionControllerEmulateNewTransaction` -> `TransactionControllerEmulateNewTransactionAction`). You will need to update imports appropriately.
+  - This change only affects the types. The action type strings themselves have not changed, so you do not need to update the list of actions you pass when initializing `TransactionController` messenger.
+
 ## [62.22.0]
 
 ### Added
