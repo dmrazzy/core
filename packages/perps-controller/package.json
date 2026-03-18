@@ -32,7 +32,9 @@
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.cts",
   "files": [
-    "dist/"
+    "dist/",
+    "!dist/providers/MYXProvider*",
+    "!dist/services/MYXClientService*"
   ],
   "scripts": {
     "build": "ts-bridge --project tsconfig.build.json --verbose --clean --no-references",
