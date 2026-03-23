@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- `AiDigestService.searchDigest` now uses the universal `asset` query parameter instead of the previous `caipAssetType` / `hlPerpsMarket` branching logic. The public TypeScript API is unchanged; any identifier (CAIP-19, ticker, name, perps market id) can be passed as before ([#8263](https://github.com/MetaMask/core/pull/8263)).
+- `RelatedAsset.hlPerpsMarket` now covers all HyperLiquid market identifiers — both regular crypto tokens (`BTC`, `ETH`) and purely synthetic perps assets (`xyz:TSLA`). No separate field is needed; clients use `caip19` presence to decide the icon resolution strategy ([#8263](https://github.com/MetaMask/core/pull/8263)).
+
 ## [0.4.0]
 
 ### Added
