@@ -40,6 +40,7 @@ import type {
   TokenScanApiResponse,
   AddressScanCacheData,
   AddressScanResult,
+  ApprovalsResponse,
 } from './types';
 import {
   applyDiffs,
@@ -51,6 +52,7 @@ import {
   splitCacheHits,
   resolveChainName,
   getPathnameFromUrl,
+  isApprovalSupportedChain,
 } from './utils';
 
 export const PHISHING_CONFIG_BASE_URL =
@@ -71,6 +73,7 @@ export const SECURITY_ALERTS_BASE_URL =
   'https://security-alerts.api.cx.metamask.io';
 export const TOKEN_BULK_SCANNING_ENDPOINT = '/token/scan-bulk';
 export const ADDRESS_SCAN_ENDPOINT = '/address/evm/scan';
+export const APPROVALS_ENDPOINT = '/address/evm/approvals';
 
 // Cache configuration defaults
 export const DEFAULT_URL_SCAN_CACHE_TTL = 1 * 60; // 1 minute in seconds
@@ -388,6 +391,7 @@ const MESSENGER_EXPOSED_METHODS = [
   'bulkScanUrls',
   'bulkScanTokens',
   'scanAddress',
+  'getApprovals',
 ] as const;
 
 /**
@@ -1232,6 +1236,66 @@ export class PhishingController extends BaseController<
       label: apiResponse.label,
     };
   }
+
+  /**
+   * Get token approvals for an EVM address with security enrichments.
+   *
+   * @param chainId - The chain ID in hex format (e.g., '0x1' for Ethereum).
+   * @param address - The address to get approvals for.
+   * @returns The approvals response containing approval data, or empty approvals on error.
+   */
+  getApprovals = async (
+    chainId: string,
+    address: string,
+  ): Promise<ApprovalsResponse> => {
+    if (!address || !chainId) {
+      return { approvals: [] };
+    }
+
+    const normalizedChainId = chainId.toLowerCase();
+    const normalizedAddress = address.toLowerCase();
+    const chain = resolveChainName(normalizedChainId);
+
+    if (!chain || !isApprovalSupportedChain(chain)) {
+      return { approvals: [] };
+    }
+
+    const apiResponse = await safelyExecuteWithTimeout(
+      async () => {
+        const res = await fetch(
+          `${SECURITY_ALERTS_BASE_URL}${APPROVALS_ENDPOINT}`,
+          {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              chain,
+              address: normalizedAddress,
+            }),
+          },
+        );
+        if (!res.ok) {
+          return { error: `${res.status} ${res.statusText}` };
+        }
+        const data: ApprovalsResponse = await res.json();
+        return data;
+      },
+      true,
+      5000,
+    );
+
+    if (
+      !apiResponse ||
+      'error' in apiResponse ||
+      !Array.isArray(apiResponse.approvals)
+    ) {
+      return { approvals: [] };
+    }
+
+    return apiResponse;
+  };
 
   /**
    * Scan multiple tokens for malicious activity in bulk.

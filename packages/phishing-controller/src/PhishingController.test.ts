@@ -21,6 +21,7 @@ import {
   PHISHING_DETECTION_BULK_SCAN_ENDPOINT,
   SECURITY_ALERTS_BASE_URL,
   ADDRESS_SCAN_ENDPOINT,
+  APPROVALS_ENDPOINT,
 } from './PhishingController';
 import type {
   PhishingControllerOptions,
@@ -38,6 +39,8 @@ import {
   PhishingDetectorResultType,
   RecommendedAction,
   AddressScanResultType,
+  ApprovalResultType,
+  ApprovalFeatureType,
 } from './types';
 import { getHostnameFromUrl } from './utils';
 
@@ -3662,6 +3665,177 @@ describe('PhishingController', () => {
 
       expect(cachedResult1).toMatchObject(mockResponse1);
       expect(cachedResult2).toMatchObject(mockResponse2);
+    });
+  });
+
+  describe('getApprovals', () => {
+    let rootMessenger: RootMessenger;
+
+    const testChainId = '0x1';
+    const testAddress = '0x1234567890123456789012345678901234567890';
+    const mockApproval = {
+      allowance: { value: '1000000', usd_price: '1000.00' },
+      asset: {
+        type: 'ERC20',
+        address: '0xtoken',
+        symbol: 'TKN',
+        name: 'Token',
+        decimals: 18,
+        logo_url: 'https://example.com/token.png',
+      },
+      exposure: { usd_price: '100.00', value: '100.00', raw_value: '0x64' },
+      spender: {
+        address: '0xspender',
+        label: 'Uniswap',
+        features: [
+          {
+            type: ApprovalFeatureType.Benign,
+            feature_id: 'VERIFIED_CONTRACT',
+            description: 'This contract is verified',
+          },
+        ],
+      },
+      verdict: ApprovalResultType.Benign,
+    };
+    const mockResponse = { approvals: [mockApproval] };
+
+    beforeEach(() => {
+      const { rootMessenger: createdMessenger } = getPhishingController();
+      rootMessenger = createdMessenger;
+      jest.useFakeTimers({ doNotFake: ['nextTick', 'queueMicrotask'], now: 0 });
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
+    it('will return approvals for a valid address and chain', async () => {
+      const scope = nock(SECURITY_ALERTS_BASE_URL)
+        .post(APPROVALS_ENDPOINT, {
+          chain: 'ethereum',
+          address: testAddress.toLowerCase(),
+        })
+        .reply(200, mockResponse);
+
+      const response = await rootMessenger.call(
+        'PhishingController:getApprovals',
+        testChainId,
+        testAddress,
+      );
+      expect(response).toStrictEqual(mockResponse);
+      expect(scope.isDone()).toBe(true);
+    });
+
+    it('will return empty approvals when address is missing', async () => {
+      const response = await rootMessenger.call(
+        'PhishingController:getApprovals',
+        testChainId,
+        '',
+      );
+      expect(response).toStrictEqual({ approvals: [] });
+    });
+
+    it('will return empty approvals when chainId is missing', async () => {
+      const response = await rootMessenger.call(
+        'PhishingController:getApprovals',
+        '',
+        testAddress,
+      );
+      expect(response).toStrictEqual({ approvals: [] });
+    });
+
+    it('will return empty approvals for unknown chain ID', async () => {
+      const response = await rootMessenger.call(
+        'PhishingController:getApprovals',
+        '0x999999',
+        testAddress,
+      );
+      expect(response).toStrictEqual({ approvals: [] });
+    });
+
+    it('will return empty approvals for chains not supported by the approvals API', async () => {
+      const response = await rootMessenger.call(
+        'PhishingController:getApprovals',
+        '0x82750',
+        testAddress,
+      );
+      expect(response).toStrictEqual({ approvals: [] });
+    });
+
+    it.each([
+      [400, 'Bad Request'],
+      [500, 'Internal Server Error'],
+    ])('will return empty approvals on %i HTTP error', async (statusCode) => {
+      const scope = nock(SECURITY_ALERTS_BASE_URL)
+        .post(APPROVALS_ENDPOINT, {
+          chain: 'ethereum',
+          address: testAddress.toLowerCase(),
+        })
+        .reply(statusCode);
+
+      const response = await rootMessenger.call(
+        'PhishingController:getApprovals',
+        testChainId,
+        testAddress,
+      );
+      expect(response).toStrictEqual({ approvals: [] });
+      expect(scope.isDone()).toBe(true);
+    });
+
+    it('will return empty approvals on timeout', async () => {
+      const scope = nock(SECURITY_ALERTS_BASE_URL)
+        .post(APPROVALS_ENDPOINT, {
+          chain: 'ethereum',
+          address: testAddress.toLowerCase(),
+        })
+        .delayConnection(10000)
+        .reply(200, mockResponse);
+
+      const promise = rootMessenger.call(
+        'PhishingController:getApprovals',
+        testChainId,
+        testAddress,
+      );
+      jest.advanceTimersByTime(5000);
+      const response = await promise;
+      expect(response).toStrictEqual({ approvals: [] });
+      expect(scope.isDone()).toBe(false);
+    });
+
+    it('will normalize address to lowercase before API call', async () => {
+      const mixedCaseAddress = '0xAbCdEf1234567890123456789012345678901234';
+      const scope = nock(SECURITY_ALERTS_BASE_URL)
+        .post(APPROVALS_ENDPOINT, {
+          chain: 'ethereum',
+          address: mixedCaseAddress.toLowerCase(),
+        })
+        .reply(200, mockResponse);
+
+      const response = await rootMessenger.call(
+        'PhishingController:getApprovals',
+        testChainId,
+        mixedCaseAddress,
+      );
+      expect(response).toStrictEqual(mockResponse);
+      expect(scope.isDone()).toBe(true);
+    });
+
+    it('will normalize chainId and resolve to chain name', async () => {
+      const mixedCaseChainId = '0xA';
+      const scope = nock(SECURITY_ALERTS_BASE_URL)
+        .post(APPROVALS_ENDPOINT, {
+          chain: 'optimism',
+          address: testAddress.toLowerCase(),
+        })
+        .reply(200, mockResponse);
+
+      const response = await rootMessenger.call(
+        'PhishingController:getApprovals',
+        mixedCaseChainId,
+        testAddress,
+      );
+      expect(response).toStrictEqual(mockResponse);
+      expect(scope.isDone()).toBe(true);
     });
   });
 });

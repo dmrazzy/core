@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add `getApprovals` method and messenger action to fetch token approvals with security enrichments from the security alerts API ([#8074](https://github.com/MetaMask/core/pull/8074))
+- Export approval-related types: `ApprovalsResponse`, `Approval`, `Allowance`, `ApprovalAsset`, `Exposure`, `Spender`, `ApprovalFeature`, `ApprovalResultType`, `ApprovalFeatureType` ([#8074](https://github.com/MetaMask/core/pull/8074))
 - Expose missing public `PhishingController` methods through its messenger ([#8269](https://github.com/MetaMask/core/pull/8269))
   - The following actions are now available:
     - `PhishingController:bypass`
