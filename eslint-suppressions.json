@@ -174,9 +174,6 @@
     }
   },
   "packages/assets-controller/src/__fixtures__/MockAssetControllerMessenger.ts": {
-    "import-x/no-relative-packages": {
-      "count": 1
-    },
     "no-restricted-syntax": {
       "count": 4
     }
@@ -188,7 +185,7 @@
   },
   "packages/assets-controller/src/data-sources/RpcDataSource.ts": {
     "no-restricted-syntax": {
-      "count": 3
+      "count": 2
     }
   },
   "packages/assets-controller/src/data-sources/SnapDataSource.ts": {
