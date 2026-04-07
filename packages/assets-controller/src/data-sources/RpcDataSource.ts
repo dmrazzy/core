@@ -272,9 +272,14 @@ export class RpcDataSource extends AbstractDataSource<
       balanceFetcherMessenger,
       { pollingInterval: balanceInterval },
     );
-    this.#balanceFetcher.setOnBalanceUpdate(
-      this.#handleBalanceUpdate.bind(this),
-    );
+    // Polling controller awaits this callback; rejections must not become unhandled.
+    this.#balanceFetcher.setOnBalanceUpdate(async (result) => {
+      try {
+        await this.#handleBalanceUpdate(result);
+      } catch (error) {
+        log('Balance update handler failed', { error });
+      }
+    });
 
     // Initialize TokenDetector with polling interval
     const tokensApiClient = new TokensApiClient();
@@ -287,9 +292,14 @@ export class RpcDataSource extends AbstractDataSource<
         useExternalService: this.#useExternalService,
       },
     );
-    this.#tokenDetector.setOnDetectionUpdate(
-      this.#handleDetectionUpdate.bind(this),
-    );
+    // Sync throw in the detector would reject the poll tick if uncaught.
+    this.#tokenDetector.setOnDetectionUpdate((result) => {
+      try {
+        this.#handleDetectionUpdate(result);
+      } catch (error) {
+        log('Detection update handler failed', { error });
+      }
+    });
 
     this.#subscribeToNetworkController();
     this.#subscribeToTransactionEvents();
