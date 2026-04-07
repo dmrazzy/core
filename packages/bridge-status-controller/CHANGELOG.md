@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add missing action types for public `BridgeStatusController` methods ([#8367](https://github.com/MetaMask/core/pull/8367))
+  - The following types are now available:
+    - `BridgeStatusControllerSubmitTxAction`
+    - `BridgeStatusControllerSubmitIntentAction`
+    - `BridgeStatusControllerGetBridgeHistoryItemByTxMetaIdAction`
+
 ### Changed
 
 - Bump `@metamask/accounts-controller` from `^37.1.1` to `^37.2.0` ([#8363](https://github.com/MetaMask/core/pull/8363))
@@ -21,6 +29,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump `@metamask/transaction-controller` from `^63.3.1` to `^64.0.0` ([#8359](https://github.com/MetaMask/core/pull/8359))
 - Add missing `@metamask/messenger` dependency ([#8318](https://github.com/MetaMask/core/pull/8318))
 - Bump `@metamask/controller-utils` from `^11.19.0` to `^11.20.0` ([#8344](https://github.com/MetaMask/core/pull/8344))
+
+### Deprecated
+
+- Deprecate `BridgeStatusAction` in favor of separate action types ([#8367](https://github.com/MetaMask/core/pull/8367))
 
 ## [70.0.4]
 
