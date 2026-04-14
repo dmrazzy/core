@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Always fire `:selectedAccountGroupChange` during `init` call ([#8427](https://github.com/MetaMask/core/pull/8427))
+  - Many controllers were actually relying on this behavior when this used to be dynamic, so we re-introduce this behavior.
 - Now persist `accounTree` ([#8437](https://github.com/MetaMask/core/pull/8437))
   - The tree is not persisted and can be used before `init` is called.
   - This allow consumers (like the assets controllers) to rely on the selected group's accounts right away.
