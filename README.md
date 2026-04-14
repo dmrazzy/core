@@ -65,6 +65,7 @@ Each package in this repository has its own README where you can find installati
 - [`@metamask/message-manager`](packages/message-manager)
 - [`@metamask/messenger`](packages/messenger)
 - [`@metamask/messenger-cli`](packages/messenger-cli)
+- [`@metamask/money-account-balance-service`](packages/money-account-balance-service)
 - [`@metamask/money-account-controller`](packages/money-account-controller)
 - [`@metamask/multichain-account-service`](packages/multichain-account-service)
 - [`@metamask/multichain-api-middleware`](packages/multichain-api-middleware)
@@ -151,6 +152,7 @@ linkStyle default opacity:0.5
   message_manager(["@metamask/message-manager"]);
   messenger(["@metamask/messenger"]);
   messenger_cli(["@metamask/messenger-cli"]);
+  money_account_balance_service(["@metamask/money-account-balance-service"]);
   money_account_controller(["@metamask/money-account-controller"]);
   multichain_account_service(["@metamask/multichain-account-service"]);
   multichain_api_middleware(["@metamask/multichain-api-middleware"]);
@@ -350,6 +352,10 @@ linkStyle default opacity:0.5
   message_manager --> base_controller;
   message_manager --> controller_utils;
   message_manager --> messenger;
+  money_account_balance_service --> base_data_service;
+  money_account_balance_service --> controller_utils;
+  money_account_balance_service --> messenger;
+  money_account_balance_service --> network_controller;
   money_account_controller --> accounts_controller;
   money_account_controller --> base_controller;
   money_account_controller --> keyring_controller;
