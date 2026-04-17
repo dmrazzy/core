@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.0]
+
 ### Added
 
 - Add `isAbortError` utility export from `utils` for distinguishing expected cancellation errors from real failures ([#8515](https://github.com/MetaMask/core/pull/8515))
@@ -113,7 +115,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Refactor pending withdraw/deposit tracking to FIFO queue design ([#8333](https://github.com/MetaMask/core/pull/8333))
-
 - Centralize Arbitrum network check in deposit hooks to prevent missing network errors ([#8333](https://github.com/MetaMask/core/pull/8333))
 - Provider credentials, builder fee injection, and env var centralization ([#8333](https://github.com/MetaMask/core/pull/8333))
 - Reduce max order amount by 0.5% buffer to avoid insufficient margin rejections ([#8333](https://github.com/MetaMask/core/pull/8333))
@@ -217,7 +218,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Bump `@metamask/controller-utils` from `^11.18.0` to `^11.19.0` ([#7995](https://github.com/MetaMask/core/pull/7995))
 
-[Unreleased]: https://github.com/MetaMask/core/compare/@metamask/perps-controller@3.1.1...HEAD
+[Unreleased]: https://github.com/MetaMask/core/compare/@metamask/perps-controller@3.2.0...HEAD
+[3.2.0]: https://github.com/MetaMask/core/compare/@metamask/perps-controller@3.1.1...@metamask/perps-controller@3.2.0
 [3.1.1]: https://github.com/MetaMask/core/compare/@metamask/perps-controller@3.1.0...@metamask/perps-controller@3.1.1
 [3.1.0]: https://github.com/MetaMask/core/compare/@metamask/perps-controller@3.0.0...@metamask/perps-controller@3.1.0
 [3.0.0]: https://github.com/MetaMask/core/compare/@metamask/perps-controller@2.0.0...@metamask/perps-controller@3.0.0
