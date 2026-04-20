@@ -14,6 +14,9 @@
 /packages/profile-sync-controller            @MetaMask/accounts-engineers
 /packages/money-account-controller           @MetaMask/accounts-engineers
 
+## Auth Team
+/packages/authenticated-user-storage         @MetaMask/auth-engineers
+
 ## Assets Team
 /packages/assets-controllers         @MetaMask/metamask-assets
 /packages/network-enablement-controller @MetaMask/metamask-assets
@@ -185,6 +188,8 @@
 /packages/phishing-controller/CHANGELOG.md    @MetaMask/product-safety @MetaMask/core-platform
 /packages/ramps-controller/package.json       @MetaMask/money-movement @MetaMask/core-platform
 /packages/ramps-controller/CHANGELOG.md       @MetaMask/money-movement @MetaMask/core-platform
+/packages/authenticated-user-storage/package.json  @MetaMask/auth-engineers @MetaMask/core-platform
+/packages/authenticated-user-storage/CHANGELOG.md  @MetaMask/auth-engineers @MetaMask/core-platform
 /packages/profile-sync-controller/package.json    @MetaMask/accounts-engineers @MetaMask/core-platform
 /packages/profile-sync-controller/CHANGELOG.md    @MetaMask/accounts-engineers @MetaMask/core-platform
 /packages/selected-network-controller/package.json @MetaMask/wallet-integrations @MetaMask/core-platform
