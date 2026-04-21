@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump `@metamask/keyring-snap-client` from `^8.2.0` to `^9.0.1` ([#8464](https://github.com/MetaMask/core/pull/8464))
 - Bump `@metamask/transaction-controller` from `^64.2.0` to `^64.3.0` ([#8482](https://github.com/MetaMask/core/pull/8482))
 
+### Fixed
+
+- Exempt mUSD token from EVM ERC-20 minimum-occurrence spam filter so it is no longer incorrectly hidden ([#8541](https://github.com/MetaMask/core/pull/8541))
+
 ## [6.0.0]
 
 ### Added
