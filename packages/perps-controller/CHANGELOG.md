@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0]
+
 ### Added
 
 - Add `coalescePerpsRestRequest` utility for deduplicating concurrent REST requests with account-scoped cache keys ([#8560](https://github.com/MetaMask/core/pull/8560))
@@ -20,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Drop the dead `spotState` parameter from `adaptAccountStateFromSDK`. Spot balances are layered on by `addSpotBalanceToAccountState`, which enforces the USDC-only policy via `SPOT_COLLATERAL_COINS`; removing the dormant branch keeps one source of truth and prevents a future caller from silently getting ALL-coins behavior ([#8560](https://github.com/MetaMask/core/pull/8560))
+- **BREAKING:** Drop the dead `spotState` parameter from `adaptAccountStateFromSDK`. Spot balances are layered on by `addSpotBalanceToAccountState`, which enforces the USDC-only policy via `SPOT_COLLATERAL_COINS`; removing the dormant branch keeps one source of truth and prevents a future caller from silently getting ALL-coins behavior ([#8560](https://github.com/MetaMask/core/pull/8560))
 
 ### Fixed
 
@@ -243,7 +245,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Bump `@metamask/controller-utils` from `^11.18.0` to `^11.19.0` ([#7995](https://github.com/MetaMask/core/pull/7995))
 
-[Unreleased]: https://github.com/MetaMask/core/compare/@metamask/perps-controller@3.2.0...HEAD
+[Unreleased]: https://github.com/MetaMask/core/compare/@metamask/perps-controller@4.0.0...HEAD
+[4.0.0]: https://github.com/MetaMask/core/compare/@metamask/perps-controller@3.2.0...@metamask/perps-controller@4.0.0
 [3.2.0]: https://github.com/MetaMask/core/compare/@metamask/perps-controller@3.1.1...@metamask/perps-controller@3.2.0
 [3.1.1]: https://github.com/MetaMask/core/compare/@metamask/perps-controller@3.1.0...@metamask/perps-controller@3.1.1
 [3.1.0]: https://github.com/MetaMask/core/compare/@metamask/perps-controller@3.0.0...@metamask/perps-controller@3.1.0
