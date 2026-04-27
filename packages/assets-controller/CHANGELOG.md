@@ -22,6 +22,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Bump `@metamask/transaction-controller` from `^64.3.0` to `^64.4.0` ([#8585](https://github.com/MetaMask/core/pull/8585))
 
+### Fixed
+
+- Handle trace callback returning `undefined` without throwing ([#8586](https://github.com/MetaMask/core/pull/8586))
+
 ## [6.1.0]
 
 ### Added
