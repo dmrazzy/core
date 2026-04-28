@@ -27,6 +27,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Malicious tokens that slip through are caught by the periodic rescan (runs daily by default)
 - Bump `@metamask/transaction-controller` from `^64.3.0` to `^64.4.0` ([#8585](https://github.com/MetaMask/core/pull/8585))
 
+### Fixed
+
+- Fix `selectAssetsBySelectedAccountGroup` crashing when an account referenced in the account tree is missing from internal accounts ([#8604](https://github.com/MetaMask/core/pull/8604))
+
 ## [104.3.0]
 
 ### Added
