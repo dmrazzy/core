@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Abort in-flight quote requests when a newer request is made for the same transaction, preventing stale responses from overwriting newer ones ([#8612](https://github.com/MetaMask/core/pull/8612))
 - Bump `@metamask/messenger` from `^1.1.1` to `^1.2.0` ([#8632](https://github.com/MetaMask/core/pull/8632))
 
 ## [20.0.1]
