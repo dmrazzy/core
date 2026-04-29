@@ -1,6 +1,7 @@
 import type { Patch } from 'immer';
 
 import { Messenger, MOCK_ANY_NAMESPACE } from './Messenger';
+import type { ActionConstraint } from './Messenger';
 import type { MockAnyNamespace } from './Messenger';
 
 describe('Messenger', () => {
@@ -169,6 +170,31 @@ describe('Messenger', () => {
       expect(() => {
         messenger.registerActionHandler('Fixture:ping', () => undefined);
       }).toThrow('A handler for Fixture:ping has already been registered');
+    });
+
+    it('allows overriding the action handler in child classes', () => {
+      type Action = { type: 'Fixture:ping'; handler: () => string };
+
+      const handler = jest.fn().mockReturnValue('foo');
+
+      class CustomMessenger extends Messenger<'Fixture', Action> {
+        protected getAction(
+          _actionType: Action['type'],
+        ): ActionConstraint['handler'] | undefined {
+          return handler;
+        }
+      }
+
+      const messenger = new CustomMessenger({
+        namespace: 'Fixture',
+      });
+
+      const realHandler = jest.fn().mockReturnValue('bar');
+      messenger.registerActionHandler('Fixture:ping', realHandler);
+
+      expect(messenger.call('Fixture:ping')).toBe('foo');
+      expect(handler).toHaveBeenCalled();
+      expect(realHandler).not.toHaveBeenCalled();
     });
 
     it('throws when calling unregistered action', () => {
