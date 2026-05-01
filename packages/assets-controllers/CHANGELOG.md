@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [105.1.0]
+
 ### Added
 
 - Seed mUSD (`0xaca92e438df0b2401ff60da7e4337b687a2435da`) into `allTokens` state as a default tracked asset on Ethereum mainnet (`0x1`), Linea (`0xe708`), Monad mainnet (`0x8f`), and Monad testnet (`0x279f`) ([#8620](https://github.com/MetaMask/core/pull/8620))
@@ -17,7 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Bump `@metamask/permission-controller` from `^12.3.0` to `^13.0.0` ([#8661](https://github.com/MetaMask/core/pull/8661))
 - Bump `@metamask/keyring-api` from `^23.0.1` to `^23.1.0` ([#8647](https://github.com/MetaMask/core/pull/8647))
+- Bump `@metamask/keyring-internal-api` from `^10.1.1` to `^11.0.1` ([#8584](https://github.com/MetaMask/core/pull/8584), [#8647](https://github.com/MetaMask/core/pull/8647))
 - Bump `@metamask/messenger` from `^1.1.1` to `^1.2.0` ([#8632](https://github.com/MetaMask/core/pull/8632))
 - Bump `@metamask/keyring-controller` from `^25.2.0` to `^25.3.0` ([#8634](https://github.com/MetaMask/core/pull/8634))
 - Bump `@metamask/network-controller` from `^30.0.1` to `^30.1.0` ([#8636](https://github.com/MetaMask/core/pull/8636))
@@ -2992,7 +2996,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Use Ethers for AssetsContractController ([#845](https://github.com/MetaMask/core/pull/845))
 
-[Unreleased]: https://github.com/MetaMask/core/compare/@metamask/assets-controllers@105.0.0...HEAD
+[Unreleased]: https://github.com/MetaMask/core/compare/@metamask/assets-controllers@105.1.0...HEAD
+[105.1.0]: https://github.com/MetaMask/core/compare/@metamask/assets-controllers@105.0.0...@metamask/assets-controllers@105.1.0
 [105.0.0]: https://github.com/MetaMask/core/compare/@metamask/assets-controllers@104.3.0...@metamask/assets-controllers@105.0.0
 [104.3.0]: https://github.com/MetaMask/core/compare/@metamask/assets-controllers@104.2.0...@metamask/assets-controllers@104.3.0
 [104.2.0]: https://github.com/MetaMask/core/compare/@metamask/assets-controllers@104.1.0...@metamask/assets-controllers@104.2.0

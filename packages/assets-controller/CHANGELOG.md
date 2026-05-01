@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.3.0]
+
 ### Added
 
 - Seed mUSD (`0xaca92e438df0b2401ff60da7e4337b687a2435da`) as a default tracked asset on Ethereum mainnet (`eip155:1`), Linea (`eip155:59144`), and Monad testnet (`eip155:143`) ([#8616](https://github.com/MetaMask/core/pull/8616))
@@ -16,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Bump `@metamask/permission-controller` from `^12.3.0` to `^13.0.0` ([#8661](https://github.com/MetaMask/core/pull/8661))
+- Bump `@metamask/assets-controllers` from `^105.0.0` to `^105.1.0` ([#8661](https://github.com/MetaMask/core/pull/8661))
 - Bump `@metamask/keyring-api` from `^23.0.1` to `^23.1.0` ([#8647](https://github.com/MetaMask/core/pull/8647))
 - Bump `@metamask/keyring-internal-api` from `^10.1.1` to `^11.0.1` ([#8584](https://github.com/MetaMask/core/pull/8584), [#8647](https://github.com/MetaMask/core/pull/8647))
 - Bump `@metamask/keyring-snap-client` from `^9.0.1` to `^9.0.2` ([#8647](https://github.com/MetaMask/core/pull/8647))
@@ -400,7 +404,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Refactor `RpcDataSource` to delegate polling to `BalanceFetcher` and `TokenDetector` services ([#7709](https://github.com/MetaMask/core/pull/7709))
 - Refactor `BalanceFetcher` and `TokenDetector` to extend `StaticIntervalPollingControllerOnly` for independent polling management ([#7709](https://github.com/MetaMask/core/pull/7709))
 
-[Unreleased]: https://github.com/MetaMask/core/compare/@metamask/assets-controller@6.2.1...HEAD
+[Unreleased]: https://github.com/MetaMask/core/compare/@metamask/assets-controller@6.3.0...HEAD
+[6.3.0]: https://github.com/MetaMask/core/compare/@metamask/assets-controller@6.2.1...@metamask/assets-controller@6.3.0
 [6.2.1]: https://github.com/MetaMask/core/compare/@metamask/assets-controller@6.2.0...@metamask/assets-controller@6.2.1
 [6.2.0]: https://github.com/MetaMask/core/compare/@metamask/assets-controller@6.1.0...@metamask/assets-controller@6.2.0
 [6.1.0]: https://github.com/MetaMask/core/compare/@metamask/assets-controller@6.0.0...@metamask/assets-controller@6.1.0
