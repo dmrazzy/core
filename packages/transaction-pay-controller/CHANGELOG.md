@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Stop synthesising a native gas-fee required token in `parseRequiredTokens`, only token-transfer assets are returned now ([#8554](https://github.com/MetaMask/core/pull/8554))
+
 ## [20.1.0]
 
 ### Added
